@@ -1,5 +1,3 @@
 *.pyc
 *.sqlite3
-mysite/roland/migrations/
 mysite/shoppinglist/migrations/
-mysite/pachangapp/migrations/

@@ -1,0 +1,32 @@
+{% extends "shoppinglist/main_template.html" %}
+{% block title %}Shopping list{% endblock %}
+{% block index %}
+<li class="nav-item active">
+  <a class="nav-link" href="{% url 'shoppinglist:index' %}">Home <span class="sr-only">(current)</span></a>
+</li>
+{% endblock %}
+{% block content %}
+{% load humanize %}
+<table class="table" style="background-color: white; color: black">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Comment</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+{% for product in products %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ product.predefinedProduct.name }}</td>
+      <td>{{ product.quantity|intcomma }}  {{ product.unit }}</td>
+      <td>{{ product.comment }}</td>
+      <td><a href="{% url 'shoppinglist:removeProduct' productId=product.id %}"><i class="fa fa-times cancel-color" aria-hidden="true"></i></a></td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+{% endblock %}

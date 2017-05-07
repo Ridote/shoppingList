@@ -1,0 +1,59 @@
+{% extends "shoppinglist/main_template.html" %}
+{% block title %}Shopping list{% endblock %}
+{% block recipes %}
+<li class="nav-item active">
+  <a class="nav-link" href="{% url 'shoppinglist:recipes' %}">Recipes <span class="sr-only">(current)</span></a>
+</li>
+{% endblock %}
+{% block content %}
+{% load humanize %}
+<div class="row">
+  <h2>Recipes</h2>
+</div>
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>{{ error|escape }}</strong>
+      </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <strong>{{ error|escape }}</strong>
+    </div>
+    {% endfor %}
+{% endif %}
+{{ form.non_field_errors }}
+<form method="POST">{% csrf_token %}
+  <div class="form-group">
+    {{ form.link.label_tag }}
+    {{ form.link }}
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<table class="table" style="background-color: white; color: black">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Link</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+{% for recipe in recipes %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td><a href="{{ recipe.link }}">{{ recipe.link }}</a></td>
+      <td><a href="{% url 'shoppinglist:removeRecipe' recipeId=recipe.id %}"><i class="fa fa-times cancel-color" aria-hidden="true"></i></a></td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+{% endblock %}

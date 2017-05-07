@@ -1,0 +1,12 @@
+{% extends "shoppinglist/main_template.html" %}
+{% block title %}Shopping list{% endblock %}
+{% block about %}
+<li class="nav-item active">
+	<a class="nav-link" href="{% url 'shoppinglist:aboutUs' %}">About us <span class="sr-only">(current)</span></a>
+</li>
+{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-8"><h5>This web has been developed by Daniel Ridao for Glori Bunny</h5></div><div class="col"><h3><i class="fa fa-heart cancel-color" aria-hidden="true"></i></h3></div>
+</div>
+{% endblock %}

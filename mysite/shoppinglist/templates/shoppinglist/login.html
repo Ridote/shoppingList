@@ -1,0 +1,39 @@
+{% extends "shoppinglist/main_unlogged_template.html" %}
+{% block title %}Shopping list{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-6 underlined">
+  <h3>Sign in</h3>
+  </div>
+</div>
+<div class="row separator-sm"></div>
+{% if error %}
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-6">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>{{ error }}</strong>
+      </div>
+  </div>
+</div>
+{% endif %}
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-6">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <input type="text" name="username" id="username"/>
+        </div>
+        <div class="form-group">
+          <input type="password" name="password" id="password"/>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Submit" />
+    </form>
+  </div>
+</div>
+{% endblock %}

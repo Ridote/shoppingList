@@ -1,0 +1,38 @@
+<html>
+   {% load static %}
+   <script src="{% static 'shoppinglist/jquery/jquery.js' %}"></script>
+   <link rel="stylesheet" type="text/css" href="{% static 'shoppinglist/bootstrap/css/bootstrap.min.css' %}" />
+   <script src="{% static 'shoppinglist/bootstrap/js/bootstrap.min.js' %}"></script>
+   <link rel="stylesheet" href="{% static 'shoppinglist/font-awesome/css/font-awesome.min.css' %}">
+   <link rel="stylesheet" type="text/css" href="{% static 'shoppinglist/custom.css' %}" />
+   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=VT323" />
+   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Aclonica" />
+   <head>
+      <link rel="shortcut icon" href="{%  static 'shoppinglist/images/favicon/shoppinglist.ico' %}">
+      <title>
+         {% block title %}Page Title{% endblock %}
+      </title>
+   </head>
+   <body>
+      <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse mb-4">
+         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         <a class="navbar-brand" href="#">Shopping list</a>
+         <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+         </div>
+      </nav>
+      <div id="main-container" class="container">
+      {% block content %}
+         Body content
+      {% endblock %}
+      </div>
+      <div id="footer-separator">
+      </div>
+      <footer class="row">
+         <span id="footer-inner" class="text-muted font-console font-sm">Shopping List. By Daniel Ridao and Glori Bunny.</span>
+      </footer>
+   </body>
+</html>
